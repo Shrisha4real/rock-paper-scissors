@@ -38,7 +38,7 @@ function getComputerChoice(){
     const computerChoice = choices[index];
     return computerChoice;
 }
-let computerChoice = getComputerChoice();
+ 
 
 // DEFINE THE GAME
 function game(userChoice)
@@ -46,7 +46,7 @@ function game(userChoice)
     if (gameActive)
   {  
     button.textContent = "RESET";
-    const getCompChoice = getComputerChoice();
+    const getCompChoice =getComputerChoice() ;
     console.log( "computer picks "+ getCompChoice );
     console.log("user picks " + userChoice);
     switch ( userChoice+getCompChoice )
@@ -87,43 +87,44 @@ function game(userChoice)
         }
        
     }
-    endGame() 
-
-}
-}
-function displayMatch(userChoice)
-{
-  
     let userImage = document.getElementById("user-image");
     userImage.innerHTML= " "; // Clear the container
     let computerImage = document.getElementById("computer-image");
     computerImage.innerHTML =  " "; // Clear the container
+  
+    
     if(userChoice == 'rock')
-    {
-        userImage.appendChild(rock);
-    }
+     {
+         userImage.appendChild(rock);
+     }
 
-    if(userChoice == 'paper')
+    else if(userChoice == 'paper')
     {
         userImage.appendChild(paper);
     }
 
-    if(userChoice == 'scissors')
+    else if(userChoice == 'scissors')
     {
         userImage.appendChild(scissors);
     }
-    if(computerChoice == 'rock')
+   
+
+    if(getCompChoice == 'rock')
+    {
+        computerImage.appendChild(rock);
+    }
+    else if(getCompChoice== 'paper')
     {
         computerImage.appendChild(paper);
     }
-    if(computerChoice== 'paper')
-    {
-        computerImage.appendChild(paper);
-    }
-    if(computerChoice== 'scissors')
+    else if(getCompChoice== 'scissors')
     {
         computerImage.appendChild(scissors);
     }
+    
+    endGame() 
+
+}
 }
 
 function endGame()
@@ -157,7 +158,12 @@ function endGame()
         if (numberOfGames ===5 )
         {
             playAgain = button.textContent = "PLAY AGAIN";
-         
+            button.addEventListener("click" , function (){
+                let userImage = document.getElementById("user-image");
+                userImage.innerHTML= " "; // Clear the container
+                let computerImage = document.getElementById("computer-image");
+                 computerImage.innerHTML =  " "; // Clear the container
+            })
             }         
 
         }
@@ -197,17 +203,17 @@ function main()
     
         rock_div.addEventListener('click' , function(){
      game("rock");
-     displayMatch("rock");
+     
     
     });
     
     paper_div.addEventListener("click", function(){
         game("paper");
-        displayMatch("paper");
+    
     });
     scissors_div.addEventListener('click', function(){
         game("scissors")
-        displayMatch("scissors");
+        
     });
 
     button.addEventListener("click" , function(){
